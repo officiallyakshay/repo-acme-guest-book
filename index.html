@@ -12,12 +12,28 @@
     <h1>The Acme Guest Book</h1>
     <div id="root"></div>
     <script type="text/babel">
+      const { render } = ReactDOM;
+      const { Component } = React;
+      const root = document.querySelector("#root");
+      render(React.createElement("hr"), root);
     <form>
       <input></input>
     <button>Sign in </button>
     </form>
     console.log('hello world');
-    //render(<App />, root);
+    class App extends Component {
+        constructor() {
+          super();
+          this.state = {
+            guests: []
+          };
+        }
+
+        render(){
+          return <hr />
+        }
+         }
+    render(<App />, root);
   </script>
 </body>
 </html>
