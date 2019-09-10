@@ -42,11 +42,15 @@
         const guests = [...this.state.guests, guest];
         this.setState({ guests });
       }
+      onClick = (ev) => {
+        ev.preventDefault();
+
+      }
       render(){
         return (
         <form>
-          <input></input>
-          <button>Sign in</button>
+          <input value = { addUser }></input>
+          <button onClick = { onClick } >Sign in</button>
         </form>
         );
       }
