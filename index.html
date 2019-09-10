@@ -1,41 +1,58 @@
 <html>
 <head>
-    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js'></script>
-
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js'></script>
+  <style>
+    h1 {
+      text-align: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    input, button {
+      height: 3rem;
+    }
+  </style>
 </head>
+
 <body>
-    <h1>The Acme Guest Book</h1>
-    <div id="root"></div>
-    <script type="text/babel">
+  <h1>The Acme Guest Book</h1>
+  <div id="root"></div>
+  <script type="text/babel">
       const { render } = ReactDOM;
       const { Component } = React;
       const root = document.querySelector("#root");
-      render(React.createElement("hr"), root);
+    
+      const API = 'localhost:7776';
 
-    console.log('hello world');
-    class App extends Component {
-        constructor() {
-          super();
-          this.state = {
-            guests: []
-          };
-        }
-
-        render(){
-          return (
-          <form>
-      <input></input>
-    <button>Sign in </button>
-    </form>
-          );
-        }
-         }
+      class App extends Component {
+      constructor() {
+        super();
+        this.state = {
+          guests: []
+        };
+      }
+      addUser = async () => {
+        const guest = (await axios.post(`${API}/api/guests`, { name: 'quq' } )).data;
+        const guests = [...this.state.guests, guest];
+        this.setState({ guests });
+      }
+      render(){
+        return (
+        <form>
+          <input></input>
+          <button>Sign in</button>
+        </form>
+        );
+      }
+    }
     render(<App />, root);
   </script>
 </body>
+
 </html>
