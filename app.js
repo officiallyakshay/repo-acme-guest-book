@@ -50,4 +50,4 @@ const server = http.createServer( async (req, res) => {
   }
 });
 
-server.listen(7777)
+server.listen(7776)
