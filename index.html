@@ -16,10 +16,7 @@
       const { Component } = React;
       const root = document.querySelector("#root");
       render(React.createElement("hr"), root);
-    <form>
-      <input></input>
-    <button>Sign in </button>
-    </form>
+
     console.log('hello world');
     class App extends Component {
         constructor() {
@@ -30,7 +27,12 @@
         }
 
         render(){
-          return <hr />
+          return (
+          <form>
+      <input></input>
+    <button>Sign in </button>
+    </form>
+          );
         }
          }
     render(<App />, root);
